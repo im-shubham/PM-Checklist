@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Machine Maintenance Checklist</title>
+
+    <style>
+        /* Your CSS styles here */
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.4/html5-qrcode.min.js" integrity="sha512-k/KAe4Yff9EUdYI5/IAHlwUswqeipP+Cp5qnrsUjTPCgl51La2/JhyyjNciztD7mWNKLSXci48m7cctATKfLlQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Welcome to the Machine Maintenance Checklist</h1>
+        </div>
+        <div class="camera-container">
+            <img src="./public/images/camera_qr.png" alt="Camera Icon" id="cameraIcon">
+            <span class="or-text">OR</span>
+        </div>
+        <div class="form-container">
+            <input type="text" id="machineId" placeholder="Enter Machine ID">
+            <button type="button" id="submitBtn">Submit</button>
+        </div>
+        <!-- Placeholder for QR code scanner -->
+        <div id="reader"></div>
+        <!-- Placeholder for result -->
+        <div id="result"></div>
+    </div>
+    <script>
+        const scanner = new Html5QrcodeScanner('reader', {
+            qrbox: {
+                width: 500,
+                height: 500,
+            },
+            fps: 20,
+        });
+        scanner.render(success, error);
+        
+        function success(result) {
+            document.getElementById('result').innerHTML = `
+                <h2>Success!</h2>
+                <p><a href="${result}">${result}</a></p>
+            `;
+            scanner.clear();
+            document.getElementById('reader').remove();
+        }
+        
+        function error(err) {
+            console.error(err);
+        }
+    </script>
+</body>
+</html>

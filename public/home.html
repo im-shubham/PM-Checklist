@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Machine Maintenance Checklist</title>
+<link rel="stylesheet" href="homeStyle.css">
+<!-- Include the Instascan library script -->
+<script src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>Welcome to the Machine Maintenance Checklist</h1>
+    </div>
+    <div class="camera-container">
+        <!-- Add an event listener to the camera icon -->
+        <img src="./images/camera_qr.png" alt="Camera Icon" id="cameraIcon" onclick="openCamera()">
+        <span class="or-text">OR</span>
+    </div>
+    <div class="form-container">
+        <input type="text" id="machineId" placeholder="Enter Machine ID">
+        <button type="button" id="submitBtn">Submit</button>
+    </div>
+    <div id="checklistContainer" style="display: none;">
+        <table id="checklistTable">
+            <thead>
+                <tr>
+                    <th>Checklist ID</th>
+                    <th>Checklist Class</th>
+                    <th>Checkpoint Detail</th>
+                    <th>Check Method</th>
+                    <th>Tool Required</th>
+                    <th>Completed</th>
+                </tr>
+            </thead>
+            <tbody id="checklistBody">
+                <!-- Checklist rows will be added here -->
+            </tbody>
+        </table>
+    </div>
+    <!-- Add a container for the camera preview -->
+    <div id="cameraPreview" class="camera-preview-container" style="display: none;">
+        <video id="cameraVideo" autoplay></video>
+    </div>
+</div>
+
+<script>
+     // Function to open the camera and scan QR code
+ function openCamera() {
+    var scanner = new Instascan.Scanner({ video: document.getElementById('cameraVideo') });
+    scanner.addListener('scan', function(content) {
+        console.log('QR Code detected:', content);
+        // Populate the machine ID input field with the content of the QR code
+        document.getElementById('machineId').value = content;
+        // Hide the camera preview after scanning
+        document.getElementById('cameraPreview').style.display = 'none';
+    });
+    Instascan.Camera.getCameras().then(function(cameras) {
+        if (cameras.length > 0) {
+            // Start scanning using the first available camera
+            scanner.start(cameras[0]);
+            // Show the camera preview
+            document.getElementById('cameraPreview').style.display = 'block';
+        } else {
+            console.error('No cameras found.');
+        }
+    }).catch(function(e) {
+        console.error('Error accessing the camera:', e);
+    });
+}
+</script>
+
+</body>
+</html>

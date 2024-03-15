@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Registration Page</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f5f5f5;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+    .container {
+        width: 400px;
+        padding: 30px;
+        border-radius: 10px;
+        background-color: #fff;
+        box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+    }
+    h2 {
+        text-align: center;
+        margin-bottom: 30px;
+        color: #333;
+    }
+    .form-group {
+        margin-bottom: 20px;
+    }
+    .form-group label {
+        font-weight: bold;
+        color: #555;
+        display: block;
+        position: relative;
+    }
+    .form-group input[type="text"] {
+        width: 100%;
+        max-width: 100%; /* Set maximum width to 100% */
+        padding: 5px 5px 10px 0px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    .form-group input[type="submit"] {
+        width: 100%;
+        background-color: #4caf50;
+        color: white;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    .form-group input[type="submit"]:hover {
+        background-color: #45a049;
+    }
+    .icon {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 10px;
+        color: #aaa;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h2><i class="fas fa-user-plus"></i> Registration Form</h2>
+    <form action="/insert_user" method="POST">
+        <div class="form-group">
+            <label for="employeeID" class="icon"><i class="fas fa-id-badge"></i></label>
+            <input type="text" id="employeeID" name="employeeID" placeholder="Employment ID" required>
+        </div>
+        <div class="form-group">
+            <label for="name" class="icon"><i class="fas fa-user"></i></label>
+            <input type="text" id="name" name="name" placeholder="Name" required>
+        </div>
+        <div class="form-group">
+            <label for="department" class="icon"><i class="fas fa-building"></i></label>
+            <input type="text" id="department" name="department" placeholder="Department" required>
+        </div>
+        <div class="form-group">
+            <label for="team" class="icon"><i class="fas fa-users"></i></label>
+            <input type="text" id="team" name="team" placeholder="Team" required>
+        </div>
+        <div class="form-group">
+            <label for="accessID" class="icon"><i class="fas fa-key"></i></label>
+            <input type="text" id="accessID" name="accessID" placeholder="Access ID" required>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Register">
+        </div>
+    </form>
+</div>
+
+</body>
+</html>
